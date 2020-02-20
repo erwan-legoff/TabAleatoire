@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Tab {
+    private int tab_parametre;
     private int accordage = 0;
     private int case_min;
     private int case_max;
@@ -34,6 +36,7 @@ public class Tab {
         //initialisation de dejaUtilise
         for (int i=0; i<this.nb_temps;i++)
             this.dejaUtilise[i] = false;
+
     }
     public  Tab(String[][] tableauTablature)
     {
@@ -45,73 +48,31 @@ public class Tab {
         }
     }
 
-/*
-    public void random() {
-        int j_temps;
-        for (int i_corde = 0; i_corde<this.nb_corde ; i_corde++) //parcours les cordes
-        {
-            System.out.println(i_corde+"<"+this.nb_corde+"?");//debuggage
-
-            j_temps=0;
-
-            while (j_temps<nb_temps)
-            {
-
-                System.out.println("corde : "+i_corde+"temps : "+j_temps);//debug
 
 
 
-                String string_aleatoire;
-
-                int note_aleatoire;
-                //insérer ID random
-                double proba_silence_corde= getProba_silence_corde(i_corde);
-                double tirage= (Math.random() * 100);
-
-
-
-                if (tirage>proba_silence_corde|| this.dejaUtilise[j_temps])
-                {
-                    System.out.println(tirage + "<"+proba_silence_corde+
-                            " \n ou le temps est déjà utilisé:"+this.dejaUtilise[j_temps]+
-                            "donc ajout de silence");
-
-                    string_aleatoire="";//pour faire du vide
-                }
-                else
-                {
-
-                    note_aleatoire=(case_min) + randomMinMax(case_min, case_max); //génère la note aléatoire entre les bornes
-
-                    System.out.println(tirage + ">"+proba_silence_corde+" donc ajout de " + note_aleatoire );
-
-                    string_aleatoire=""+note_aleatoire;// conversion du nb aleatoire en string
-                    this.dejaUtilise[j_temps]=true;
-                }
-                this.tab_corde[i_corde].addNoteFin(string_aleatoire);
-                j_temps++;
-
-
-            }
-
-
-        }
+    public void tabFromID_tab(String id_tab) //problème : les notes sont à un endroit identique sur les cordes, mais le numéro des cases changent...
+    {   //
+        String[] id_tab_decode=extracteurDeParametres(id_tab);
+        assignerParametreFromID(id_tab_decode);
+        generateurRandomAvecID(idRandom);
     }
 
- *///ancienne fonction random, ne prenant pas en compte les gammes...
-
-
-    public void extracteurDeParametres(String id_tab)
-    {
-        System.out.println("ne marche pas actuellement, devra décoder un id_tab pour la régénérer");
-        int compteur=0;
-        for (int i = 0; i < id_tab.length() ; i++) {
-            if ('-' == id_tab.charAt(i))
-            {
-                compteur++;
-            }
-        }
+    private void assignerParametreFromID(String[] id_tab_decode) {
+        if(id_tab_decode[0].equals("1"))
+            this.estMelodie = true;
+        else
+        {estMelodie=false;}
+        idRandom= Integer.parseInt(id_tab_decode[1]);
+        nb_corde= Integer.parseInt(id_tab_decode[2]);
+        nb_temps= Integer.parseInt(id_tab_decode[3]);
+        proba_silence=Integer.parseInt(id_tab_decode[4]);
+        case_min     =Integer.parseInt(id_tab_decode[5]);
+        case_max     =Integer.parseInt(id_tab_decode[6]);
+        tonalite     =Integer.parseInt(id_tab_decode[7]);
+        accordage    =Integer.parseInt(id_tab_decode[8]);
     }
+
     public void newRandom()
     {
         generateurRandomCustom(case_min,case_max,tonalite,num_gamme);
@@ -125,7 +86,7 @@ public class Tab {
     }
 
 
-    public void generateurRandomAvecID(int idRand) { //Fonction centrale : permet de générer une tabature aléatoire
+    private void generateurRandomAvecID(int idRand) { //Fonction centrale : permet de générer une tabature aléatoire
         // à partir d'une gamme et d'un idRand donnés
         this.idRandom=idRand;
         generateurID();
@@ -135,7 +96,7 @@ public class Tab {
             double proba_silence_corde = getProba_silence_corde(num_corde_actuelle);//détermine la proba de silence
                                                                                     // pour cette corde
             Corde corde_actuelle = tab_corde[num_corde_actuelle]; //on définit la corde sur laquelle on travaille
-            for (int temps_actuel = 0; temps_actuel < nb_temps; temps_actuel++) //parcours tous les temps de cette corde
+            for (int temps_actuel = 0; temps_actuel < nb_temps; temps_actuel++) //parcourt tous les temps de cette corde
             {
                 if(proba_silence_corde> randomRepetableMinMax(0,100)||(dejaUtilise[temps_actuel] && estMelodie))
                     corde_actuelle.addNoteFin(""); //ajoute un silence aléatoirement ou si déjà utilisée
@@ -153,6 +114,7 @@ public class Tab {
         }
     }
 
+
     //permet de changer la probabilité d'avoir un silence en fonction de la corde
     //n'est pas parfait, mais permet de mieux répartir les notes sur toutes les cordes
     private double getProba_silence_corde(int i_corde) {
@@ -163,12 +125,12 @@ public class Tab {
     //permet de générer une note aléatoire dans la gamme et corde choisie
     private int noteRandom(Corde corde)
     {
-        //crée un tableau avec toutes les notes de la gammes dans l'intervalle choisie
+        //crée un tableau avec toutes les notes de la gammes dans l'intervalle choisi
         ArrayList<Integer> cases_gammes = Gammes.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max+1);
         //sélectionne une case au hasard dans ce tableau
-        //la note sera donc oblgatoirement dans la gamme
+        //la note sera donc obligatoirement dans la gamme
         int numero_note_random = randomRepetableMinMax(0,cases_gammes.size()-1);
-        return (int) cases_gammes.get(numero_note_random);
+        return cases_gammes.get(numero_note_random);
     }
 
     //fonction random utilisée
@@ -190,8 +152,29 @@ public class Tab {
         }
         else {melody="0";}
 
-        id_tab=melody+"-"+nb_corde+"-"+nb_temps+"-"+proba_silence+"-"
-                +case_min+"-"+case_max+"-"+tonalite+"-"+accordage+"-"+idRandom;
+        id_tab=melody+"-"+idRandom+"-"+nb_corde+"-"+nb_temps+"-"+proba_silence+"-"
+                +case_min+"-"+case_max+"-"+tonalite+"-"+accordage;
+
+    }
+    private String[] extracteurDeParametres(String id_tab) //extrait les paramètres à partir de l'ID
+    {
+        int compteur=0;
+        String[] id_tab_decode = new String[9];
+        for (int i = 0; i < 9; i++) {
+            id_tab_decode[i]="";
+        }
+
+        for (int i = 0; i < id_tab.length() ; i++) {
+
+            if('-' != id_tab.charAt(i))
+            {
+                id_tab_decode[compteur]=id_tab_decode[compteur]+id_tab.charAt(i);
+            }
+            else
+            { compteur++; }
+        }
+        System.out.println(Arrays.toString(id_tab_decode));
+        return id_tab_decode;
 
     }
 
@@ -232,6 +215,10 @@ public class Tab {
 
     public void setEstMelodie(boolean estMelodie) {
         this.estMelodie = estMelodie;
+    }
+
+    public String getId_tab() {
+        return id_tab;
     }
 
     public String toString()

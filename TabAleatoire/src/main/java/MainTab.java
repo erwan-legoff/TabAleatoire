@@ -12,7 +12,7 @@ public class MainTab {
                                     // si la génération est une mélodie, les notes ne se chevaucheront jamais
         tablature.setProba_silence(proba_silence);
 
-        tablature.generateurRandomCustom(case_min,case_max, 8,1); //génère une tablature selon les paramètres définis
+        //tablature.generateurRandomCustom(case_min,case_max, 8,1); //génère une tablature selon les paramètres définis
         /*
         la tonalité = 8 permet de dire que la gamme est en SOL# (ou G#  en anglais )
         {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"}
@@ -20,8 +20,10 @@ public class MainTab {
         Cette gamme en l'occurence est gammeNaturelleMajeure, "DO RE MI FA SOL LA SI"
         il n'y a que celle là et la gamme chromatique (0) qui est composée d'absolument toutes les notes
         */
+        tablature.tabFromID_tab("1-65-6-20-50-0-12-8-0");
 
         System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tablature);//affichage de la tablature
+
 
         /*
         DESCRIPTION RESULTAT
