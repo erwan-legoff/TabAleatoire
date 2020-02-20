@@ -5,14 +5,14 @@ public class MainTab {
         //exemple d'utilisation du programme
 
         Tab tablature =new Tab(6,20); // choisir un nombre de cordes entre 1 et 6
-        int case_min=0; int case_max=12; double proba_silence=0.5;
+        int case_min=0; int case_max=12; int proba_silence=50;
         // case_min et case_max permettent de définir l'écart acceptée dans la tablature
         // plus la proba_silence est élevée (entre 0 et 1) plus la tablature est "aérée"
         tablature.setEstMelodie(true);//définit si c'est une mélodie ou non
                                     // si la génération est une mélodie, les notes ne se chevaucheront jamais
         tablature.setProba_silence(proba_silence);
 
-        tablature.randomGamme(case_min,case_max, 8,1); //génère une tablature selon les paramètres définis
+        tablature.generateurRandomCustom(case_min,case_max, 8,1); //génère une tablature selon les paramètres définis
         /*
         la tonalité = 8 permet de dire que la gamme est en SOL# (ou G#  en anglais )
         {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"}
@@ -47,6 +47,7 @@ A|----10----------------------------------------------------9--| //corde de LA
 E|-------------------------------------------------------------| // grosse corde de MI
 
          */
+
 
 
 

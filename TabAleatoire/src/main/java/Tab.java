@@ -1,13 +1,21 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Tab {
     private int accordage = 0;
-    private int id_tab=0;//permet de sauvegarder un échantillon aléatoire
+    private int case_min;
+    private int case_max;
+    private int tonalite;
+    private int num_gamme;
+    private String id_tab;//permet de sauvegarder un échantillon aléatoire
+    private int idRandom;//permet de répéter la série aléatoire, mais doit être complété par les autres paramètres
+                        // pour être utile, et donc devenir l'id_tab
     private int nb_corde=1;
     private boolean estMelodie =true;//demande si c'est une mélodie
     private int nb_temps;//longueur de la tablature
-    private double proba_silence=0.5;
+    private int proba_silence=50;
     private boolean[] dejaUtilise=new boolean[1000];//stocke les emplacements déjà pris
+    private Random randomizer = new Random();
 
     private String gamme="tout";
     private Corde[] tab_corde;
@@ -93,9 +101,35 @@ public class Tab {
  *///ancienne fonction random, ne prenant pas en compte les gammes...
 
 
-    //Fonction centrale : permet de générer une tabature aléatoir à partir d'une gamme donnée
-    public void randomGamme(int case_min, int case_max, int tonalite, int num_gamme)
+    public void regenerationAvecId_tab(String id_tab)
     {
+        System.out.println("ne marche pas actuellement, devra décoder un id_tab pour la régénérer");
+        int compteur=0;
+        for (int i = 0; i < id_tab.length() ; i++) {
+            if ('-' == id_tab.charAt(i))
+            {
+                compteur++;
+            }
+        }
+    }
+    public void newRandom()
+    {
+        generateurRandomCustom(case_min,case_max,tonalite,num_gamme);
+    }
+
+    public void generateurRandomCustom(int caseMin, int caseMax, int ton, int numGamme)
+    {
+        int idRand=randomReelMinMax(0,1000); //génération d'un IDrand Aléatoire
+        this.case_min=caseMin; this.case_max=caseMax; this.tonalite=ton; this.num_gamme=numGamme;
+        generateurRandomAvecID(idRand);
+    }
+
+
+    public void generateurRandomAvecID(int idRand) { //Fonction centrale : permet de générer une tabature aléatoire
+        // à partir d'une gamme et d'un idRand donnés
+        this.idRandom=idRand;
+        generateurID();
+        this.randomizer.setSeed(idRandom);
         for (int num_corde_actuelle = 0; num_corde_actuelle < nb_corde; num_corde_actuelle++)//parcours les cordes
         {
             double proba_silence_corde = getProba_silence_corde(num_corde_actuelle);//détermine la proba de silence
@@ -103,13 +137,13 @@ public class Tab {
             Corde corde_actuelle = tab_corde[num_corde_actuelle]; //on définit la corde sur laquelle on travaille
             for (int temps_actuel = 0; temps_actuel < nb_temps; temps_actuel++) //parcours tous les temps de cette corde
             {
-                if(proba_silence_corde>randomMinMax(0,100)||(dejaUtilise[temps_actuel] && estMelodie))
+                if(proba_silence_corde> randomRepetableMinMax(0,100)||(dejaUtilise[temps_actuel] && estMelodie))
                     corde_actuelle.addNoteFin(""); //ajoute un silence aléatoirement ou si déjà utilisée
                                                     // et qu'on veut bien une mélodie
                 else
                     {   //sinon on tire au sort une note à ajouter
                         //appel de la fonction noteRandom
-                        int note_random = noteRandom(corde_actuelle, tonalite, case_min, case_max + 1, num_gamme);
+                        int note_random = noteRandom(corde_actuelle);
                         //Ajout de la note à la fin de la corde
                         corde_actuelle.addNoteFin(note_random);
                         //En cas de mélodie, on ne pourra plus utiliser ce temps sur aucune des cordes pour mettre une note
@@ -122,29 +156,62 @@ public class Tab {
     //permet de changer la probabilité d'avoir un silence en fonction de la corde
     //n'est pas parfait, mais permet de mieux répartir les notes sur toutes les cordes
     private double getProba_silence_corde(int i_corde) {
-        return (45*proba_silence*nb_corde)/(i_corde+1);
+        return (0.45*proba_silence*nb_corde)/(i_corde+1);
     }
 
 
     //permet de générer une note aléatoire dans la gamme et corde choisie
-    private int noteRandom(Corde corde, int tonalite, int case_min, int case_max, int num_gamme)
+    private int noteRandom(Corde corde)
     {
         //crée un tableau avec toutes les notes de la gammes dans l'intervalle choisie
-        ArrayList<Integer> cases_gammes = Gammes.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max);
+        ArrayList<Integer> cases_gammes = Gammes.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max+1);
         //sélectionne une case au hasard dans ce tableau
         //la note sera donc oblgatoirement dans la gamme
-        int numero_note_random = randomMinMax(0,cases_gammes.size()-1);
+        int numero_note_random = randomRepetableMinMax(0,cases_gammes.size()-1);
         return (int) cases_gammes.get(numero_note_random);
     }
 
     //fonction random utilisée
     //dans le futur elle permettra de générer un identifiant
     //pour retrouver la même tablature random
-    private static int randomMinMax(int case_min, int case_max) {
-        return (int)(Math.random() * ((case_max - (case_min)) + 1));
+    private static int randomReelMinMax(int min, int max) {
+        return (int)(Math.random() * ((max - (min)) + 1));
+    }
+    private int randomRepetableMinMax(int min, int max)
+    {
+        return randomizer.nextInt(max+min)+min;
+    }
+    private void generateurID()
+    {
+        String melody;
+        if (estMelodie)
+        {
+            melody="1";
+        }
+        else {melody="0";}
+
+        id_tab=melody+"-"+nb_corde+"-"+nb_temps+"-"+proba_silence+"-"
+                +case_min+"-"+case_max+"-"+tonalite+"-"+accordage+"-"+idRandom;
+
     }
 
-    public void genererGamme(int case_min, int case_max, int tonalite, int num_gamme)//pas vraiment utile en l'état,
+    public void setMinMax(int case_min, int case_max)
+    {
+        this.case_min=case_min;
+        this.case_max=case_max;
+    }
+
+    public void setTonalite(int tonalite) {
+        this.tonalite = tonalite;
+    }
+
+    public void setAccordage(int accordage)
+    {
+        this.accordage=accordage;
+    }
+
+
+    public void genererGamme(int num_gamme)//pas vraiment utile en l'état,
     // génère une tablature avec toutes les notes d'une gammes
     {
         for (int num_corde = 1; num_corde < nb_corde; num_corde++) { //initialisation d'une corde
@@ -159,7 +226,7 @@ public class Tab {
 
     }
 
-    public void setProba_silence(double proba_silence) {
+    public void setProba_silence(int proba_silence) {
         this.proba_silence = proba_silence;
     }
 
@@ -174,6 +241,8 @@ public class Tab {
         {
             str=str+tab_corde[i];
         }
+        System.out.println("id_tab : " + id_tab);
+        System.out.println("id_random : " + idRandom);
         return str;
     }
 }
