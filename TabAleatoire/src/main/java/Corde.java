@@ -1,6 +1,6 @@
 public class Corde {
     private String tab_corde[] = new String[1000];
-    private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la partition
+    private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la corde
     private int num_corde; //1=petite corde de mi
     private int accordage=0;//demi ton par rapport au LA
 
@@ -9,11 +9,11 @@ public class Corde {
 
     public Corde(int num_corde, int accordage)
     {
-        if(num_corde>0)
+        if(num_corde>0 && num_corde<=6)
         {
             this.num_corde=num_corde;
         }
-        else{System.out.println("Attention, numero de corde superieur a zero obligatoire");}
+        else{System.out.println("Attention, numero de corde entre 1 et 6 obligatoire");}
         this.accordage=accordage;
     }
 
