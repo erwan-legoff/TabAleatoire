@@ -101,7 +101,7 @@ public class Tab {
  *///ancienne fonction random, ne prenant pas en compte les gammes...
 
 
-    public void regenerationAvecId_tab(String id_tab)
+    public void extracteurDeParametres(String id_tab)
     {
         System.out.println("ne marche pas actuellement, devra décoder un id_tab pour la régénérer");
         int compteur=0;
