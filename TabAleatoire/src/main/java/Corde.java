@@ -16,7 +16,7 @@ public class Corde {
         else{System.out.println("Attention, numero de corde superieur a zero obligatoire");}
 
     }
-    public Corde(Corde corde, int num_corde)
+    public Corde(Corde corde, int num_corde) // constructeur copiant une corde
     {
         this(num_corde);//reprend la première méthode
         for(int i=0;i<corde.taille_tab;i++)
