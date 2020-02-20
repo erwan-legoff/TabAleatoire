@@ -4,13 +4,13 @@ public class MainTab {
         //ajouts futur plus lointain: ajout d'un mode d'écoute des tablatures
         //exemple d'utilisation du programme
 
-        Tab tablature =new Tab(6,20); // choisir un nombre de cordes entre 1 et 6
+        Tab tabCopie =new Tab(6,20); // choisir un nombre de cordes entre 1 et 6
         int case_min=0; int case_max=12; int proba_silence=50;
         // case_min et case_max permettent de définir l'écart acceptée dans la tablature
         // plus la proba_silence est élevée (entre 0 et 1) plus la tablature est "aérée"
-        tablature.setEstMelodie(true);//définit si c'est une mélodie ou non
+        tabCopie.setEstMelodie(true);//définit si c'est une mélodie ou non
                                     // si la génération est une mélodie, les notes ne se chevaucheront jamais
-        tablature.setProba_silence(proba_silence);
+        tabCopie.setProba_silence(proba_silence);
 
         //tablature.generateurRandomCustom(case_min,case_max, 8,1); //génère une tablature selon les paramètres définis
         /*
@@ -20,9 +20,15 @@ public class MainTab {
         Cette gamme en l'occurence est gammeNaturelleMajeure, "DO RE MI FA SOL LA SI"
         il n'y a que celle là et la gamme chromatique (0) qui est composée d'absolument toutes les notes
         */
-        tablature.tabFromID_tab("1-65-6-20-50-0-12-8-0");
+        Tab tablatureOrigine = new Tab(3,20);
+        tablatureOrigine.generateurRandomCustom(0,12,0,1);
+        System.out.println("origine:" + tablatureOrigine);
+        String id_tab_origine=tablatureOrigine.getId_tab();
+        tabCopie.tabFromID_tab(id_tab_origine);
+        System.out.println("copie:"+ tabCopie);
+        //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");
 
-        System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tablature);//affichage de la tablature
+        //System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tabCopie);//affichage de la tablature
 
 
         /*
