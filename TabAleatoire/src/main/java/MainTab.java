@@ -12,9 +12,10 @@ public class MainTab {
         System.out.println("tablature= "+tablature);
 
          */
+
         Tab tablature =new Tab(6,50);
         int case_min=0; int case_max=12; double proba_silence=0.5;
-        tablature.setMelodie(true);
+        tablature.setEstMelodie(true);
         tablature.setProba_silence(proba_silence);
         tablature.randomGamme(case_min,case_max, 8,1);
         System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tablature);

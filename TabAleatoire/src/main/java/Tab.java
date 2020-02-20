@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 public class Tab {
+    private int accordage = 0;
     private int id_tab=0;//permet de sauvegarder un échantillon aléatoire
     private int nb_corde=1;
-    private boolean melodie=true;//demande si c'est une mélodie
+    private boolean estMelodie =true;//demande si c'est une mélodie
     private int nb_temps;//longueur de la tablature
     private double proba_silence=0.5;
     private boolean[] dejaUtilise=new boolean[1000];//stocke les emplacements déjà pris
@@ -19,7 +20,7 @@ public class Tab {
         System.out.println("il y a "+ nb_temps+" temps" );
         this.tab_corde=new Corde[this.nb_corde];
         for (int i = 0; i < nb_corde ; i++) {//initialise la tablature à vide
-            tab_corde[i]=new Corde(i+1);
+            tab_corde[i]=new Corde(i+1,accordage);
         }
 
         //initialisation de dejaUtilise
@@ -91,13 +92,7 @@ public class Tab {
 
  */
 
-    private double getProba_silence_corde(int i_corde) {
-        return (45*proba_silence*nb_corde)/(i_corde+1);
-    }
 
-    private static int randomMinMax(int case_min, int case_max) {
-        return (int)(Math.random() * ((case_max - (case_min)) + 1));
-    }
 
     public void randomGamme(int case_min, int case_max, int tonalite, int num_gamme)
     {
@@ -108,7 +103,7 @@ public class Tab {
             Corde corde_actuelle = tab_corde[num_corde_actuelle];
             for (int temps_actuel = 0; temps_actuel < nb_temps; temps_actuel++)
             {
-                if(proba_silence_corde>randomMinMax(0,100)||(dejaUtilise[temps_actuel] &&melodie))
+                if(proba_silence_corde>randomMinMax(0,100)||(dejaUtilise[temps_actuel] && estMelodie))
                     corde_actuelle.addNoteFin("");
                 else
                     {
@@ -120,6 +115,14 @@ public class Tab {
 
         }
     }
+    private double getProba_silence_corde(int i_corde) {
+        return (45*proba_silence*nb_corde)/(i_corde+1);
+    }
+
+    private static int randomMinMax(int case_min, int case_max) {
+        return (int)(Math.random() * ((case_max - (case_min)) + 1));
+    }
+
     private int noteRandom(Corde corde, int tonalite, int case_min, int case_max, int num_gamme)
     {
         ArrayList<Integer> cases_gammes = Gammes.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max);
@@ -131,14 +134,12 @@ public class Tab {
     public void genererGamme(int case_min, int case_max, int tonalite, int num_gamme)
     {
         for (int num_corde = 1; num_corde < nb_corde; num_corde++) { //initialisation d'une corde
-            Corde corde_actuelle=new Corde(num_corde);
+            Corde corde_actuelle=new Corde(num_corde, accordage);
             ArrayList<Integer> gamme = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,case_min,case_max);
             for (int note_actuelle = 0; note_actuelle < gamme.size(); note_actuelle++) {
                 corde_actuelle.addNoteFin(gamme.get(note_actuelle));
             }
             tab_corde[num_corde]=corde_actuelle;
-
-
         }
 
 
@@ -148,8 +149,8 @@ public class Tab {
         this.proba_silence = proba_silence;
     }
 
-    public void setMelodie(boolean melodie) {
-        this.melodie = melodie;
+    public void setEstMelodie(boolean estMelodie) {
+        this.estMelodie = estMelodie;
     }
 
     public String toString()
