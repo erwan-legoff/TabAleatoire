@@ -46,7 +46,7 @@ public class Gammes {
                     //on prend modulo 12 car la note est la même à l'octave au-dessus, juste plus aigue
                     //un octave=12 demi tons = 12 cases
                 {
-                    gammeCase.add((cases + note_corde+tonalite) % 12); //ajoute la case jusqu'à 11
+                    gammeCase.add((cases + note_corde+tonalite-12) % 24); //ajoute la case jusqu'à 11
                                                                         // plus tard 23, plus proche du nombre total
                                                                         //de case d'une guitare
                 }

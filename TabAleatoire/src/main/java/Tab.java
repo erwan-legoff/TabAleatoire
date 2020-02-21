@@ -19,7 +19,7 @@ public class Tab {
     private boolean[] dejaUtilise=new boolean[1000];//stocke les emplacements déjà pris
     private Random randomizer = new Random();
 
-    private String gamme="tout";
+
     private Corde[] tab_corde;
 
     public Tab(int nbCorde, int nb_temps) //création d'une tablature à remplir, en fonction de la taille demandée
@@ -71,6 +71,7 @@ public class Tab {
         case_max     =Integer.parseInt(id_tab_decode[6]);
         tonalite     =Integer.parseInt(id_tab_decode[7]);
         accordage    =Integer.parseInt(id_tab_decode[8]);
+        num_gamme    =Integer.parseInt(id_tab_decode[9]);
     }
 
     public void newRandom()
@@ -134,11 +135,12 @@ public class Tab {
     }
 
     //fonction random utilisée
-    //dans le futur elle permettra de générer un identifiant
+    //permet de générer un identifiant
     //pour retrouver la même tablature random
     private static int randomReelMinMax(int min, int max) {
         return (int)(Math.random() * ((max - (min)) + 1));
     }
+    //permet de retrouver la tablature en rentrant de nouveau l'ID_RAND
     private int randomRepetableMinMax(int min, int max)
     {
         return randomizer.nextInt(max+min)+min;
@@ -153,14 +155,14 @@ public class Tab {
         else {melody="0";}
 
         id_tab=melody+"-"+idRandom+"-"+nb_corde+"-"+nb_temps+"-"+proba_silence+"-"
-                +case_min+"-"+case_max+"-"+tonalite+"-"+accordage;
+                +case_min+"-"+case_max+"-"+tonalite+"-"+accordage+"-"+num_gamme;
 
     }
     private String[] extracteurDeParametres(String id_tab) //extrait les paramètres à partir de l'ID
     {
         int compteur=0;
-        String[] id_tab_decode = new String[9];
-        for (int i = 0; i < 9; i++) {
+        String[] id_tab_decode = new String[10];
+        for (int i = 0; i < 10; i++) {
             id_tab_decode[i]="";
         }
 
@@ -200,8 +202,8 @@ public class Tab {
         for (int num_corde = 1; num_corde < nb_corde; num_corde++) { //initialisation d'une corde
             Corde corde_actuelle=new Corde(num_corde, accordage);
             ArrayList<Integer> gamme = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,case_min,case_max);
-            for (int note_actuelle = 0; note_actuelle < gamme.size(); note_actuelle++) {
-                corde_actuelle.addNoteFin(gamme.get(note_actuelle));
+            for (Integer integer : gamme) {
+                corde_actuelle.addNoteFin(integer);
             }
             tab_corde[num_corde]=corde_actuelle;
         }
@@ -232,4 +234,6 @@ public class Tab {
         System.out.println("id_random : " + idRandom);
         return str;
     }
+
+
 }

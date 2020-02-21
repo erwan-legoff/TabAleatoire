@@ -20,12 +20,16 @@ public class MainTab {
         Cette gamme en l'occurence est gammeNaturelleMajeure, "DO RE MI FA SOL LA SI"
         il n'y a que celle là et la gamme chromatique (0) qui est composée d'absolument toutes les notes
         */
-        Tab tablatureOrigine = new Tab(3,20);
-        tablatureOrigine.generateurRandomCustom(0,12,0,1);
+        Tab tablatureOrigine = new Tab(3,50);
+        tablatureOrigine.generateurRandomCustom(0,6,0,1);
         System.out.println("origine:" + tablatureOrigine);
         String id_tab_origine=tablatureOrigine.getId_tab();
-        tabCopie.tabFromID_tab(id_tab_origine);
+        //tabCopie.tabFromID_tab(id_tab_origine);
         System.out.println("copie:"+ tabCopie);
+        Tab gamme = new Tab(2,50);
+        tabCopie.setMinMax(0,12);
+       // gamme.genererGamme(1);
+
         //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");
 
         //System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tabCopie);//affichage de la tablature
