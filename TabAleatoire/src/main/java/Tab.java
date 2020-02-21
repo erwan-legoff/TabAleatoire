@@ -203,7 +203,7 @@ public class Tab {
         {
             Corde corde_actuelle=tab_corde[num_corde];
 
-            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+8)%24,(tonalite+12)%24);
+            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+7)%24,(tonalite+12-1)%24);
             System.out.println("note de la corde "+corde_actuelle.getNoteCorde()+" : "+listeNoteCordeActuelle);
             int temps=0;
             while (dejaUtilise[temps])
