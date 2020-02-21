@@ -34,16 +34,13 @@ public class MainTab {
 
          */
 
-    /*
+
         Tab gamme = new Tab(6,50);
         gamme.setMinMax(0,12);
         gamme.genererGamme(1);
         System.out.println(gamme);
-    */
-        ArrayList<Integer> listeNotesGammesDosurMI = Gammes.getGammeEnCase(4,0,1,0,12);
-        ArrayList<Integer> listeNotesGammesDosurDo = Gammes.getGammeEnCase(0,0,1,0,12);
-        int[] tableauNotesVerif={0,1,3,5,7,8,10};
-        System.out.println(Arrays.toString(tableauNotesVerif) +"\n"+listeNotesGammesDosurMI.toString()+"\n"+listeNotesGammesDosurDo);
+
+
         //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");
 
         //System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tabCopie);//affichage de la tablature
