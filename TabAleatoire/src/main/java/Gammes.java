@@ -47,17 +47,17 @@ public class Gammes {
         ArrayList<Integer> gammeCase = new ArrayList<>(); //liste qu'on va retourner, convertie en numéro de case
         int cases = 0;
 
-        while (cases-12+note_corde+tonalite<case_max) //dépasse la case 12 pour commencer par la première note
+        while (cases-12-note_corde+tonalite<case_max) //dépasse la case 12 pour commencer par la première note
                                                     //de la corde qui correspond à la gamme
                                                         // permet d'avoir toutes les notes du tableau bien répartie
         {
-            if ((cases + note_corde+tonalite) >= 12+case_min)
+            if ((cases - note_corde+tonalite) >= 12+case_min)
             {
                 if (gamme[cases % 12])//ajoute la note si elle est présente dans la gamme
                     //on prend modulo 12 car la note est la même à l'octave au-dessus, juste plus aigue
                     //un octave=12 demi tons = 12 cases
                 {
-                    gammeCase.add((cases + note_corde+tonalite-12) % 24); //ajoute la case jusqu'à 11
+                    gammeCase.add((cases - note_corde+tonalite-12) % 24); //ajoute la case jusqu'à 11
                                                                         // plus tard 23, plus proche du nombre total
                                                                         //de case d'une guitare
                 }
