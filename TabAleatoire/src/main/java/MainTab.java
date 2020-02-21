@@ -31,12 +31,12 @@ public class MainTab {
 
          */
 
-
+    /*
         Tab gamme = new Tab(6,50);
         gamme.setMinMax(0,12);
         gamme.genererGamme(1);
         System.out.println(gamme);
-
+    */
         //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");
 
         //System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tabCopie);//affichage de la tablature
