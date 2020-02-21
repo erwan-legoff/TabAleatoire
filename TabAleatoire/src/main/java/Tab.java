@@ -199,7 +199,7 @@ public class Tab {
     // génère une tablature avec toutes les notes d'une gammes
     {
         initialiserDejaUtilise();
-        for (int num_corde = 0; num_corde < nb_corde; num_corde++)
+        for (int num_corde = nb_corde-1; num_corde >=0; num_corde--)
         {
             Corde corde_actuelle=tab_corde[num_corde];
 
@@ -239,6 +239,7 @@ public class Tab {
     public String toString()
     {
         String str="";
+        str="Tonalité : "+ Gammes.getNotesFr(tonalite);
         for (int i=0;i<this.nb_corde ;i++ )
         {
             str=str+tab_corde[i];

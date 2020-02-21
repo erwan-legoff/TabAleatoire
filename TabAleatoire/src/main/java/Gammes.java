@@ -15,8 +15,8 @@ public class Gammes {
         pareil entre SI et DO
          */
 
-                                                //DO      DO#  RE    RE#    MI     FA     FA#   SOL    SOL#  LA    LA#   SI
-    static final String[] notes =                {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"};    //liste les notes
+    static final String[] notesFr =                 {"DO", "DO#","RE", "RE#",  "MI",  "FA","FA#", "SOL","SOL#", "LA", "LA#","SI"};
+    static final String[] notesEng =                {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"};    //liste les notes
 
     private static final boolean[] chromatique = {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
     private static final boolean[] naturelleM =  {true, false, true, false, true, true, false, true, false, true, false, true};
@@ -75,7 +75,10 @@ public class Gammes {
         return boolVersListeCase(note_corde, tonalite, tabGammes[type_gamme], case_min, case_max);
     }
 
-
-
-
+    public static String getNotesFr(int num_note) {
+        return notesFr[num_note];
+    }
+    public static String getNotesEng(int num_note) {
+        return notesEng[num_note];
+    }
 }
