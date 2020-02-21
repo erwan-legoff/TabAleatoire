@@ -16,7 +16,7 @@ public class Tab {
     private boolean estMelodie =true;//demande si c'est une mélodie
     private int nb_temps;//longueur de la tablature
     private int proba_silence=50;
-    private boolean[] dejaUtilise=new boolean[1000];//stocke les emplacements déjà pris
+    private boolean[] dejaUtilise=new boolean[10000];//stocke les emplacements déjà pris
     private Random randomizer = new Random();
 
 
@@ -34,8 +34,7 @@ public class Tab {
         }
 
         //initialisation de dejaUtilise
-        for (int i=0; i<this.nb_temps;i++)
-            this.dejaUtilise[i] = false;
+        initialiserDejaUtilise();
 
     }
     public  Tab(String[][] tableauTablature)
@@ -199,15 +198,29 @@ public class Tab {
     public void genererGamme(int num_gamme)//pas vraiment utile en l'état,
     // génère une tablature avec toutes les notes d'une gammes
     {
-        for (int num_corde = 1; num_corde < nb_corde; num_corde++) { //initialisation d'une corde
-            Corde corde_actuelle=new Corde(num_corde, accordage);
-            ArrayList<Integer> gamme = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,case_min,case_max);
-            for (Integer integer : gamme) {
-                corde_actuelle.addNoteFin(integer);
-            }
-            tab_corde[num_corde]=corde_actuelle;
-        }
+        initialiserDejaUtilise();
+        for (int num_corde = 0; num_corde < nb_corde; num_corde++)
+        {
+            Corde corde_actuelle=tab_corde[num_corde];
 
+            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+8)%24,(tonalite+12)%24);
+            System.out.println("note de la corde "+corde_actuelle.getNoteCorde()+" : "+listeNoteCordeActuelle);
+            int temps=0;
+            while (dejaUtilise[temps])
+            {corde_actuelle.addNoteFin("");
+            temps++;}
+
+            for (Integer integer : listeNoteCordeActuelle) {
+                corde_actuelle.addNoteFin(integer);
+
+                dejaUtilise[temps]=true;
+                temps++;
+            }
+        }
+    }
+    private void initialiserDejaUtilise()
+    {
+        Arrays.fill(dejaUtilise, false);
 
     }
 

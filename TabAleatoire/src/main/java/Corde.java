@@ -1,5 +1,5 @@
 public class Corde {
-    private String tab_corde[] = new String[1000];
+    private String tab_corde[] = new String[50];
     private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la corde
     private int num_corde; //1=petite corde de mi
     private int accordage=0;//demi ton par rapport au LA
@@ -43,6 +43,7 @@ public class Corde {
     public void addNoteFin(String note)
     {
         this.tab_corde[this.taille_corde]=note;
+        System.out.println("ajout de la note "+ note +" à "+nom_corde[num_corde]);
         this.taille_corde++;
     }
     public void addNoteFin(int note)
@@ -50,12 +51,13 @@ public class Corde {
         addNoteFin(Integer.toString(note));
     } //permet d'évite de caster les in en String
 
+
     //Getters
     public int getNoteCorde()
     {
         return note_corde[num_corde-1];
     }//retourne la note de la corde
-                                                                // utile pour la gamme plus tard
+                                                                // utile pour la gamme
     public int getNoteTab(int j_temps)
     {
         if (this.tab_corde[j_temps]=="")
@@ -80,6 +82,7 @@ public class Corde {
     {
         return this.num_corde;
     }
+
 
     public String toString()//génère le visuel d'une corde
     {

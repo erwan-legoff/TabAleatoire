@@ -32,6 +32,17 @@ public class Gammes {
         //mais le tableau booléen est plus facile à utiliser pour rentrer une gamme
         //cela permet donc de faciliter l'écriture des gammes
         //tout en facilitant le code
+        if (case_max<case_min)
+        {
+            System.out.println("WARNING boolVersListeCase a reçu une case_max>case_min");
+            if (case_min>12) {
+
+                case_min = case_min - 12;
+                System.out.println("case_min vaut maintenant" + case_min);
+            }
+            else { case_max=case_max+12;
+            System.out.println("case_max vaut maintenant"+case_max);}
+        }
 
         ArrayList<Integer> gammeCase = new ArrayList<>(); //liste qu'on va retourner, convertie en numéro de case
         int cases = 0;
