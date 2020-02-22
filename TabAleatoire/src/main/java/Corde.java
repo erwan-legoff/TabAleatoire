@@ -102,6 +102,8 @@ public class Corde {
         String str="\n";
         if (estTablature)
             str = str + nom_corde[this.num_corde]+"|"+"-";//affiche le nom de la corde
+        else
+            str = str + "||-";
         for(int i = 0; i< taille_corde; i++)
         {
             if(tab_corde[i]=="")
@@ -111,7 +113,7 @@ public class Corde {
             else
             {
                 str=str+this.tab_corde[i];
-                if (estTablature&&Integer.parseInt(this.tab_corde[i])<10)
+                if (!estTablature||estTablature&&Integer.parseInt(this.tab_corde[i])<10)
                 {
                     str=str+"-";
                 }

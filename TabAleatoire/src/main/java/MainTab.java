@@ -39,7 +39,7 @@ public class MainTab {
         gamme.setMinMax(5,10);
         gamme.setEstMelodie(true);
         gamme.setNum_gamme(1);
-        gamme.genererGamme(1);
+        gamme.newRandom();
         System.out.println(gamme);
         NotesFlow gammeConvertie = new NotesFlow(gamme);
         System.out.println(gammeConvertie);

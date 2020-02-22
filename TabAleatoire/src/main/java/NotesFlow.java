@@ -31,7 +31,7 @@ public class NotesFlow {
         for (int num_corde_actuelle = 0; num_corde_actuelle < tab_corde.length; num_corde_actuelle++) {
             str=str+tab_corde[num_corde_actuelle];
         }
-        return "NotesFlow convertit à partir de la tablature : "+ tablature.getId_tab()+
+        return "NotesFlow converti à partir de la tablature |"+  tablature.getId_tab()+ "| :"+
                 str;
     }
 }
