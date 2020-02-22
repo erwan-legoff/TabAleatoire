@@ -69,10 +69,20 @@ public class Gammes {
 
 
 
+
     static ArrayList<Integer> getGammeEnCase(int note_corde, int tonalite, int type_gamme, int case_min, int case_max)
     {   //Permet de renvoyer une gamme choisie dans la tonalité choisie avec l'étendue choisie
 
         return boolVersListeCase(note_corde, tonalite, tabGammes[type_gamme], case_min, case_max);
+    }
+    static String caseToNoteEng(int note_corde, String note_case)
+    {
+
+        if(note_case.equals(""))
+            return"";
+        else {int num_case = Integer.parseInt(note_case);
+               int num_note = num_case + note_corde;
+                return notesEng[num_note%12]; }
     }
 
     public static String getNotesFr(int num_note) {

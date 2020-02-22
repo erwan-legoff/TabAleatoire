@@ -75,6 +75,7 @@ public class Tab {
 
     public void newRandom()
     {
+        //devra effacer la tab pour en refaire une nouvelle
         generateurRandomCustom(case_min,case_max,tonalite,num_gamme);
     }
 
@@ -232,8 +233,16 @@ public class Tab {
         this.estMelodie = estMelodie;
     }
 
+    public void setNum_gamme(int num_gamme) {
+        this.num_gamme = num_gamme;
+    }
+
     public String getId_tab() {
         return id_tab;
+    }
+
+    public Corde[] getTab_corde() {
+        return tab_corde;
     }
 
     public String toString()

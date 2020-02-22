@@ -1,4 +1,5 @@
 public class Corde {
+    private boolean estTablature =true;
     private String tab_corde[] = new String[50];
     private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la corde
     private int num_corde; //1=petite corde de mi
@@ -46,6 +47,10 @@ public class Corde {
         System.out.println("ajout de la note "+ note +" à "+nom_corde[num_corde]);
         this.taille_corde++;
     }
+    public void setNoteTemps(int num_temps, String note)
+    {
+        tab_corde[num_temps]=note;
+    }
     public void addNoteFin(int note)
     {
         addNoteFin(Integer.toString(note));
@@ -58,15 +63,19 @@ public class Corde {
         return note_corde[num_corde-1];
     }//retourne la note de la corde
                                                                 // utile pour la gamme
-    public int getNoteTab(int j_temps)
+    public String getNoteTab( int temps)
     {
-        if (this.tab_corde[j_temps]=="")
+        return this.tab_corde[temps];
+    }
+    public int getNoteTabInt(int temps)
+    {
+        if (getNoteTab(temps)=="")
         {
             return -1;
         }
         else
         {
-            return Integer.parseInt(this.tab_corde[j_temps]);
+            return Integer.parseInt(getNoteTab(temps));
         }
     }
 
@@ -82,13 +91,17 @@ public class Corde {
     {
         return this.num_corde;
     }
+    public void setFalseEstTablature()
+    {
+        estTablature=false;
+    }
 
 
     public String toString()//génère le visuel d'une corde
     {
         String str="\n";
-
-        str = str + nom_corde[this.num_corde]+"|"+"-";//affiche le nom de la corde
+        if (estTablature)
+            str = str + nom_corde[this.num_corde]+"|"+"-";//affiche le nom de la corde
         for(int i = 0; i< taille_corde; i++)
         {
             if(tab_corde[i]=="")
@@ -98,7 +111,7 @@ public class Corde {
             else
             {
                 str=str+this.tab_corde[i];
-                if (Integer.parseInt(this.tab_corde[i])<10)
+                if (estTablature&&Integer.parseInt(this.tab_corde[i])<10)
                 {
                     str=str+"-";
                 }
@@ -109,4 +122,5 @@ public class Corde {
         }
         return str+"|";
     }
+
 }

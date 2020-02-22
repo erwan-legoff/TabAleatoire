@@ -35,10 +35,16 @@ public class MainTab {
          */
 
 
-        Tab gamme = new Tab(6,50);
-        gamme.setMinMax(0,12);
+        Tab gamme = new Tab(3,50);
+        gamme.setMinMax(5,10);
+        gamme.setEstMelodie(true);
+        gamme.setNum_gamme(1);
         gamme.genererGamme(1);
         System.out.println(gamme);
+        NotesFlow gammeConvertie = new NotesFlow(gamme);
+        System.out.println(gammeConvertie);
+
+        String[] tableau_tab_id={"1-615-3-50-50-5-10-0-0-1"};
 
 
         //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");
