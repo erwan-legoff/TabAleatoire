@@ -26,6 +26,8 @@ public class Tab {
     {
         this.nb_corde=nbCorde;
         this.nb_temps=nb_temps;
+        case_min=0;
+        case_max=12;
         System.out.println("il y a "+this.nb_corde+" cordes");
         System.out.println("il y a "+ nb_temps+" temps" );
         this.tab_corde=new Corde[this.nb_corde];
