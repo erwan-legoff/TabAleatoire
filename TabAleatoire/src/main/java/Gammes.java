@@ -18,10 +18,12 @@ public class Gammes {
     static final String[] notesFr =                 {"DO", "DO#","RE", "RE#",  "MI",  "FA","FA#", "SOL","SOL#", "LA", "LA#","SI"};
     static final String[] notesEng =                {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"};    //liste les notes
 
-    private static final boolean[] chromatique = {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
-    private static final boolean[] naturelleM =  {true, false, true, false, true, true, false, true, false, true, false, true};
-    private static final boolean[][] tabGammes={chromatique,naturelleM};//on regroupe les gammes dans un tableau
-                                                                        //pour pouvoir les choisir
+    private static final boolean[] chromatique =    {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
+    private static final boolean[] naturelleMaj =   {true, false, true, false, true, true, false, true, false, true, false, true};
+    private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, false, true};
+    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, };
+    //on regroupe les gammes dans un tableau
+    //pour pouvoir les choisir
 
 
     static ArrayList<Integer> boolVersListeCase(int note_corde, int tonalite, boolean[] gamme, int case_min, int case_max) {
