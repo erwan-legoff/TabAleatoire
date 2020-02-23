@@ -23,10 +23,15 @@ public class Gammes {
     private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, true, false};
     private static final boolean[] harmonic_m =    {true, false, true, true, false, true, false, true, true, false, false, true};
     private static final boolean[] melodic_m =     {true, false, true, true, false, true, false, true, false, true, false, true};
-    private static final boolean[] Mixolydian =     {true, false, true, false, true, true, false, true, false, true, true, false};
-    private static final boolean[] Phrygian =      {true, true, false, false, true, true, false, true, false, true, true, false};
+    private static final boolean[] mixolydian =     {true, false, true, false, true, true, false, true, false, true, true, false};
+    private static final boolean[] phrygian =      {true, true, false, false, true, true, false, true, false, true, true, false};
+    private static final boolean[] pentatonicMaj = {true, false, true, false, true, false, false, true, false, true, false, false};
+    private static final boolean[] pentatonic_m = {true, false, false, true, false, true, true, true, false, false, true, false};
+    private static final boolean[] bluesMaj =     {true, false, true, true, false, false, false, true, false, true, false, false};
+    private static final boolean[] blues_m =      {true, false, false, true, false, true, false, true, false, false, true, false};
 
-    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, harmonic_m, melodic_m, Mixolydian, Phrygian};
+    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, harmonic_m,
+                                                  melodic_m, mixolydian, phrygian, pentatonicMaj, pentatonic_m, bluesMaj, blues_m};
     //on regroupe les gammes dans un tableau
     //pour pouvoir les choisir
 
