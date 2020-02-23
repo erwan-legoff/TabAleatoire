@@ -23,7 +23,10 @@ public class Gammes {
     private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, true, false};
     private static final boolean[] harmonic_m =    {true, false, true, true, false, true, false, true, true, false, false, true};
     private static final boolean[] melodic_m =     {true, false, true, true, false, true, false, true, false, true, false, true};
-    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, harmonic_m, melodic_m, };
+    private static final boolean[] Mixolydian =     {true, false, true, false, true, true, false, true, false, true, true, false};
+    private static final boolean[] Phrygian =      {true, true, false, false, true, true, false, true, false, true, true, false};
+
+    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, harmonic_m, melodic_m, Mixolydian, Phrygian};
     //on regroupe les gammes dans un tableau
     //pour pouvoir les choisir
 
