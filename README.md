@@ -15,7 +15,7 @@ Listes des paramètres que prennent (pour cette version) en compte les tablature
 	- num_gamme: définit la gamme utilisée par le numéro correspondant (voir correspondance plus bas)
 	- accordage (non testé) : permet de jouer à la bonne tonalité même avec un accordage non-standard
 				  par défaut en LA (0)
-	- estMelodie: définie si la tablature est une mélodie,  les notes ne seront donc pas superposées (dans cette version) si estMelodie est true.
+	- estMelodie: définit si la tablature est une mélodie,  les notes ne seront donc pas superposées (dans cette version) si estMelodie est true.
 	              estMelodie est true par défaut.
 	
 
