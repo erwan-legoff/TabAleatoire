@@ -20,8 +20,10 @@ public class Gammes {
 
     private static final boolean[] chromatique =    {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
     private static final boolean[] naturelleMaj =   {true, false, true, false, true, true, false, true, false, true, false, true};
-    private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, false, true};
-    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, };
+    private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, true, false};
+    private static final boolean[] harmonic_m =    {true, false, true, true, false, true, false, true, true, false, false, true};
+    private static final boolean[] melodic_m =     {true, false, true, true, false, true, false, true, false, true, false, true};
+    private static final boolean[][] tabGammes={chromatique, naturelleMaj, naturelle_m, harmonic_m, melodic_m, };
     //on regroupe les gammes dans un tableau
     //pour pouvoir les choisir
 
