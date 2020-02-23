@@ -26,7 +26,7 @@ public class Gammes {
     private static final boolean[] mixolydian =     {true, false, true, false, true, true, false, true, false, true, true, false};
     private static final boolean[] phrygian =      {true, true, false, false, true, true, false, true, false, true, true, false};
     private static final boolean[] pentatonicMaj = {true, false, true, false, true, false, false, true, false, true, false, false};
-    private static final boolean[] pentatonic_m = {true, false, false, true, false, true, true, true, false, false, true, false};
+    private static final boolean[] pentatonic_m = {true, false, false, true, false, true, false, true, false, false, true, false};
     private static final boolean[] bluesMaj =     {true, false, true, true, false, false, false, true, false, true, false, false};
     private static final boolean[] blues_m =      {true, false, false, true, false, true, false, true, false, false, true, false};
 

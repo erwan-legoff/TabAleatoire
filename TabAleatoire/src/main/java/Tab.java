@@ -15,7 +15,7 @@ public class Tab {
     private int nb_corde=1;
     private boolean estMelodie =true;//demande si c'est une mélodie
     private int nb_temps;//longueur de la tablature
-    private int proba_silence=50;
+    private int repartition =50;
     private boolean[] dejaUtilise=new boolean[10000];//stocke les emplacements déjà pris
     private Random randomizer = new Random();
 
@@ -65,7 +65,7 @@ public class Tab {
         idRandom= Integer.parseInt(id_tab_decode[1]);
         nb_corde= Integer.parseInt(id_tab_decode[2]);
         nb_temps= Integer.parseInt(id_tab_decode[3]);
-        proba_silence=Integer.parseInt(id_tab_decode[4]);
+        repartition =Integer.parseInt(id_tab_decode[4]);
         case_min     =Integer.parseInt(id_tab_decode[5]);
         case_max     =Integer.parseInt(id_tab_decode[6]);
         tonalite     =Integer.parseInt(id_tab_decode[7]);
@@ -119,7 +119,7 @@ public class Tab {
     //permet de changer la probabilité d'avoir un silence en fonction de la corde
     //n'est pas parfait, mais permet de mieux répartir les notes sur toutes les cordes
     private double getProba_silence_corde(int i_corde) {
-        return (0.45*proba_silence*nb_corde)/(i_corde+1);
+        return (0.45* repartition *nb_corde)/(i_corde+1);
     }
 
 
@@ -154,7 +154,7 @@ public class Tab {
         }
         else {melody="0";}
 
-        id_tab=melody+"-"+idRandom+"-"+nb_corde+"-"+nb_temps+"-"+proba_silence+"-"
+        id_tab=melody+"-"+idRandom+"-"+nb_corde+"-"+nb_temps+"-"+ repartition +"-"
                 +case_min+"-"+case_max+"-"+tonalite+"-"+accordage+"-"+num_gamme;
 
     }
@@ -204,7 +204,7 @@ public class Tab {
         {
             Corde corde_actuelle=tab_corde[num_corde];
 
-            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+7)%24,(tonalite+12-1)%24);
+            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+7)%24,(tonalite+12)%24);
             System.out.println("note de la corde "+corde_actuelle.getNoteCorde()+" : "+listeNoteCordeActuelle);
             int temps=0;
             while (dejaUtilise[temps])
@@ -225,8 +225,8 @@ public class Tab {
 
     }
 
-    public void setProba_silence(int proba_silence) {
-        this.proba_silence = proba_silence;
+    public void setRepartition(int repartition) {
+        this.repartition = repartition;
     }
 
     public void setEstMelodie(boolean estMelodie) {

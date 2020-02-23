@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class MainTab {
     public static void main(String[] args) {
         //ajouts dans le futur proche : ajout d'ID permettant de retrouver la tablature anciennement générée
@@ -35,10 +32,11 @@ public class MainTab {
          */
 
 
-        Tab gamme = new Tab(3,50);
-        gamme.setMinMax(5,10);
+        Tab gamme = new Tab(6,50);
+        gamme.setMinMax(8,14);
+        gamme.setRepartition(40);
         gamme.setEstMelodie(true);
-        gamme.setNum_gamme(1);
+        gamme.setNum_gamme(10);
         gamme.newRandom();
         System.out.println(gamme);
         NotesFlow gammeConvertie = new NotesFlow(gamme);
