@@ -113,7 +113,7 @@ public class Tab {
                         //Ajout de la note à la fin de la corde
                         corde.addNoteFin(note_random);
                         //En cas de mélodie, on ne pourra plus utiliser ce temps sur aucune des cordes pour mettre une note
-                        dejaUtilise[temps]=true;
+                        dejaUtilise[temps]=true;//
                     }
             }
         }
