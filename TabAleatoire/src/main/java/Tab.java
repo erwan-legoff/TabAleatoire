@@ -42,14 +42,16 @@ public class Tab {
     public  Tab(String[][] tableauTablature)
     {
         this(tableauTablature.length,tableauTablature[0].length);
-        for (int num_corde_actuelle = 0; num_corde_actuelle < tableauTablature.length ; num_corde_actuelle++) {
-            for (int temps_actuel = 0; temps_actuel < tableauTablature[0].length; temps_actuel++) {
-                tab_corde[num_corde_actuelle].addNoteFin(tableauTablature[num_corde_actuelle][temps_actuel]);
-            }
+        for (int i_corde = 0; i_corde < tableauTablature.length ; i_corde++) {
+            remplirCorde(tableauTablature, i_corde);
         }
     }
 
-
+    private void remplirCorde(String[][] tableauTablature, int i_corde) {
+        for (int temps = 0; temps < tableauTablature[0].length; temps++) {
+            tab_corde[i_corde].addNoteFin(tableauTablature[i_corde][temps]);
+        }
+    }
 
 
     public void tabFromID_tab(String id_tab) //problème : les notes sont à un endroit identique sur les cordes, mais le numéro des cases changent...
@@ -94,24 +96,24 @@ public class Tab {
         this.idRandom=idRand;
         generateurID();
         this.randomizer.setSeed(idRandom);
-        for (int num_corde_actuelle = 0; num_corde_actuelle < nb_corde; num_corde_actuelle++)//parcours les cordes
+        for (int i_corde = 0; i_corde < nb_corde; i_corde++)//parcours les cordes
         {
-            double proba_silence_corde = getProba_silence_corde(num_corde_actuelle);//détermine la proba de silence
+            double proba_silence_corde = getProba_silence_corde(i_corde);//détermine la proba de silence
                                                                                     // pour cette corde
-            Corde corde_actuelle = tab_corde[num_corde_actuelle]; //on définit la corde sur laquelle on travaille
-            for (int temps_actuel = 0; temps_actuel < nb_temps; temps_actuel++) //parcourt tous les temps de cette corde
+            Corde corde = tab_corde[i_corde]; //on définit la corde sur laquelle on travaille
+            for (int temps = 0; temps < nb_temps; temps++) //parcourt tous les temps de cette corde
             {
-                if(proba_silence_corde> randomRepetableMinMax(0,100)||(dejaUtilise[temps_actuel] && estMelodie))
-                    corde_actuelle.addNoteFin(""); //ajoute un silence aléatoirement ou si déjà utilisée
+                if(proba_silence_corde> randomRepetableMinMax(0,100)||(dejaUtilise[temps] && estMelodie))
+                    corde.addNoteFin(""); //ajoute un silence aléatoirement ou si déjà utilisée
                                                     // et qu'on veut bien une mélodie
                 else
                     {   //sinon on tire au sort une note à ajouter
                         //appel de la fonction noteRandom
-                        int note_random = noteRandom(corde_actuelle);
+                        int note_random = noteRandom(corde);
                         //Ajout de la note à la fin de la corde
-                        corde_actuelle.addNoteFin(note_random);
+                        corde.addNoteFin(note_random);
                         //En cas de mélodie, on ne pourra plus utiliser ce temps sur aucune des cordes pour mettre une note
-                        dejaUtilise[temps_actuel]=true;
+                        dejaUtilise[temps]=true;
                     }
             }
         }

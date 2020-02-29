@@ -13,15 +13,12 @@ public class NotesFlow {
 
     private void conversionTableauCordeEnNotesEng(Corde[] tab_corde)
     {
-
         for (int i_corde = 0; i_corde <tab_corde.length ; i_corde++)
         {
             Corde corde = tab_corde[i_corde];
             corde.setFalseEstTablature();
             convesionCordeEnNotesEng(corde);
         }
-
-
     }
 
 
