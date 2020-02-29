@@ -13,12 +13,14 @@ public class NotesFlow {
     private Corde[] case_vers_note()
     {
         Corde[] tab_corde_conversion = tablature.getTab_corde();
-        for (int num_corde_actuelle = 0; num_corde_actuelle <tab_corde_conversion.length ; num_corde_actuelle++) {
-            Corde corde_actuelle = tab_corde_conversion[num_corde_actuelle];
+        for (int i_corde = 0; i_corde <tab_corde_conversion.length ; i_corde++)
+        {
+            Corde corde_actuelle = tab_corde_conversion[i_corde];
             corde_actuelle.setFalseEstTablature();
-            for (int temps = 0; temps < corde_actuelle.getTaille() ; temps++) {
+            for (int temps = 0; temps < corde_actuelle.getTaille() ; temps++)
+            {
                 String case_actuelle = corde_actuelle.getNoteTab(temps);
-                String note=Gammes.caseToNoteEng(corde_actuelle.getNoteCorde(),case_actuelle);
+                String note= Gamme.caseToNoteEng(corde_actuelle.getNoteCorde(),case_actuelle);
                 corde_actuelle.setNoteTemps(temps,note);
             }
         }
@@ -28,8 +30,8 @@ public class NotesFlow {
     @Override
     public String toString() {
         String str ="";
-        for (int num_corde_actuelle = 0; num_corde_actuelle < tab_corde.length; num_corde_actuelle++) {
-            str=str+tab_corde[num_corde_actuelle];
+        for (int c = 0; c < tab_corde.length; c++) {
+            str=str+tab_corde[c];
         }
         return "NotesFlow converti à partir de la tablature |"+  tablature.getId_tab()+ "| :"+
                 str;

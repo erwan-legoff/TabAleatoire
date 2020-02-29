@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GammesTest {
+class GammeTest {
     @BeforeEach
     public void initialisateur()
     {
@@ -17,7 +17,7 @@ class GammesTest {
     {
         boolean egal=true;
 
-       ArrayList<Integer> listeNotesGammes = Gammes.getGammeEnCase(0,0,0,0,12);
+       ArrayList<Integer> listeNotesGammes = Gamme.getGammeEnCase(0,0,0,0,12);
        int[] tableauNotesVerif={0,1,2,3,4,5,6,7,8,9,10,11};
         for (int i = 0; i <12 ; i++) {
             if (tableauNotesVerif[i]!=listeNotesGammes.get(i))
@@ -31,7 +31,7 @@ class GammesTest {
     {
         boolean egal=true;
 
-        ArrayList<Integer> listeNotesGammes = Gammes.getGammeEnCase(4,0,0,0,12);
+        ArrayList<Integer> listeNotesGammes = Gamme.getGammeEnCase(4,0,0,0,12);
         int[] tableauNotesVerif={0,1,2,3,4,5,6,7,8,9,10,11};
         for (int i = 0; i <12 ; i++) {
             if (tableauNotesVerif[i]!=listeNotesGammes.get(i))
@@ -46,7 +46,7 @@ class GammesTest {
     {
         boolean egal=true;
 
-        ArrayList<Integer> listeNotesGammes = Gammes.getGammeEnCase(4,4,0,0,12);
+        ArrayList<Integer> listeNotesGammes = Gamme.getGammeEnCase(4,4,0,0,12);
         int[] tableauNotesVerif={0,1,2,3,4,5,6,7,8,9,10,11};
         for (int i = 0; i <12 ; i++) {
             if (tableauNotesVerif[i]!=listeNotesGammes.get(i))
@@ -61,7 +61,7 @@ class GammesTest {
     {
         boolean egal=true;
 
-        ArrayList<Integer> listeNotesGammes = Gammes.getGammeEnCase(0,0,1,0,12);
+        ArrayList<Integer> listeNotesGammes = Gamme.getGammeEnCase(0,0,1,0,12);
         //boolean[] naturelleM =  {true, false, true, false, true, true, false, true, false, true, false, true};
         int[] tableauNotesVerif={0,            2,          4,    5,            7,           9,            11};
         for (int i = 0; i <7 ; i++) {
@@ -77,7 +77,7 @@ class GammesTest {
     {
         boolean egal=true;
 
-        ArrayList<Integer> listeNotesGammes = Gammes.getGammeEnCase(4,0,1,0,12);
+        ArrayList<Integer> listeNotesGammes = Gamme.getGammeEnCase(4,0,1,0,12);
         //boolean[] naturelleM =  {true, false, true, false, true, true, false, true, false, true, false, true};
         int[] tableauNotesVerif={0,1,3,5,7,8,10};
         for (int i = 0; i <7 ; i++) {

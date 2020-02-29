@@ -129,7 +129,7 @@ public class Tab {
     private int noteRandom(Corde corde)
     {
         //crée un tableau avec toutes les notes de la gammes dans l'intervalle choisi
-        ArrayList<Integer> cases_gammes = Gammes.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max+1);
+        ArrayList<Integer> cases_gammes = Gamme.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max+1);
         //sélectionne une case au hasard dans ce tableau
         //la note sera donc obligatoirement dans la gamme
         int numero_note_random = randomRepetableMinMax(0,cases_gammes.size()-1);
@@ -206,7 +206,7 @@ public class Tab {
         {
             Corde corde_actuelle=tab_corde[num_corde];
 
-            ArrayList<Integer> listeNoteCordeActuelle = Gammes.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+7)%24,(tonalite+12)%24);
+            ArrayList<Integer> listeNoteCordeActuelle = Gamme.getGammeEnCase(corde_actuelle.getNoteCorde(),tonalite,num_gamme,(tonalite+7)%24,(tonalite+12)%24);
             System.out.println("note de la corde "+corde_actuelle.getNoteCorde()+" : "+listeNoteCordeActuelle);
             int temps=0;
             while (dejaUtilise[temps])
@@ -250,7 +250,7 @@ public class Tab {
     public String toString()
     {
         String str="";
-        str="Tonalité : "+ Gammes.getNotesFr(tonalite);
+        str="Tonalité : "+ Gamme.getNotesFr(tonalite);
         for (int i=0;i<this.nb_corde ;i++ )
         {
             str=str+tab_corde[i];
