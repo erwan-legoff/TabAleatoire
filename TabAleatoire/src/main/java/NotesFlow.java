@@ -7,33 +7,41 @@ public class NotesFlow {
     public NotesFlow(Tab tablature)
     {
         this.tablature=tablature;
-        this.tab_corde=case_vers_note();
+        tab_corde = tablature.getTab_corde();
+        conversionTableauCordeEnNotesEng(tab_corde);
     }
 
-    private Corde[] case_vers_note()
+    private void conversionTableauCordeEnNotesEng(Corde[] tab_corde)
     {
-        Corde[] tab_corde_conversion = tablature.getTab_corde();
-        for (int i_corde = 0; i_corde <tab_corde_conversion.length ; i_corde++)
+
+        for (int i_corde = 0; i_corde <tab_corde.length ; i_corde++)
         {
-            Corde corde_actuelle = tab_corde_conversion[i_corde];
-            corde_actuelle.setFalseEstTablature();
-            for (int temps = 0; temps < corde_actuelle.getTaille() ; temps++)
-            {
-                String case_actuelle = corde_actuelle.getNoteTab(temps);
-                String note= Gamme.caseToNoteEng(corde_actuelle.getNoteCorde(),case_actuelle);
-                corde_actuelle.setNoteTemps(temps,note);
-            }
+            Corde corde = tab_corde[i_corde];
+            corde.setFalseEstTablature();
+            convesionCordeEnNotesEng(corde);
         }
-        return tab_corde_conversion;
+
+
+    }
+
+
+
+    private void convesionCordeEnNotesEng(Corde corde) {
+        for (int temps = 0; temps < corde.getTaille() ; temps++)
+        {
+            String nCase = corde.getNoteTemps(temps);
+            String note= Gamme.caseToNoteEng(corde.getNoteCorde(),nCase);
+            corde.setNoteTemps(temps,note);
+        }
     }
 
     @Override
     public String toString() {
-        String str ="";
+        String str ="NotesFlow converti à partir de la tablature |"+  tablature.getId_tab()+ "| :";
+
         for (int c = 0; c < tab_corde.length; c++) {
             str=str+tab_corde[c];
         }
-        return "NotesFlow converti à partir de la tablature |"+  tablature.getId_tab()+ "| :"+
-                str;
+        return str;
     }
 }

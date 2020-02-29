@@ -63,19 +63,19 @@ public class Corde {
         return note_corde[num_corde-1];
     }//retourne la note de la corde
                                                                 // utile pour la gamme
-    public String getNoteTab( int temps)
+    public String getNoteTemps(int temps)
     {
         return this.tab_corde[temps];
     }
     public int getNoteTabInt(int temps)
     {
-        if (getNoteTab(temps)=="")
+        if (getNoteTemps(temps)=="")
         {
             return -1;
         }
         else
         {
-            return Integer.parseInt(getNoteTab(temps));
+            return Integer.parseInt(getNoteTemps(temps));
         }
     }
 
