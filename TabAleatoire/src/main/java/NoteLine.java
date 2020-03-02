@@ -1,13 +1,17 @@
-public class NoteLine extends Corde {
-    public NoteLine(int num_corde, int accordage) {
-        super(num_corde, accordage);
+public class NoteLine  {
+    int numLigne;
+    String[] noteTab;
+
+    public NoteLine(int numLigne) {
+        if(numLigne>0)
+            this.numLigne = numLigne;
+        else {
+            System.out.println(" NumLigne :"+ numLigne + "<0");
+        }
+        noteTab = new String[100];
     }
 
-    public NoteLine(Corde corde, int num_corde) {
-        super(corde, num_corde);
-    }
 
-    public NoteLine(String[] tab_string, int num_corde) {
-        super(tab_string, num_corde);
-    }
+
+
 }
