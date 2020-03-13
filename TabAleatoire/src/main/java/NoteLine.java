@@ -1,6 +1,6 @@
 public class NoteLine  {
-    int numLigne;
-    String[] noteTab;
+    private int numLigne;
+    private String[] noteTab;
 
     public NoteLine(int numLigne) {
         if(numLigne>0)
