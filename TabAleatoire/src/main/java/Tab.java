@@ -58,7 +58,7 @@ public class Tab {
     {   //
         String[] id_tab_decode=extracteurDeParametres(id_tab);
         assignerParametreFromID(id_tab_decode);
-        generateurRandomAvecID(idRandom);
+        genererTabRandom(idRandom);
     }
 
     private void assignerParametreFromID(String[] id_tab_decode) {
@@ -77,21 +77,21 @@ public class Tab {
         num_gamme    =Integer.parseInt(id_tab_decode[9]);
     }
 
-    public void newRandom()
+    public void genererTabRandom()
     {
         //devra effacer la tab pour en refaire une nouvelle
-        generateurRandomCustom(case_min,case_max,tonalite,num_gamme);
+        genererTabRandom(case_min,case_max,tonalite,num_gamme);
     }
 
-    public void generateurRandomCustom(int caseMin, int caseMax, int ton, int numGamme)
+    public void genererTabRandom (int caseMin, int caseMax, int ton, int numGamme)
     {
         int idRand=randomReelMinMax(0,1000); //génération d'un IDrand Aléatoire
         this.case_min=caseMin; this.case_max=caseMax; this.tonalite=ton; this.num_gamme=numGamme;
-        generateurRandomAvecID(idRand);
+        genererTabRandom(idRand);
     }
 
 
-    private void generateurRandomAvecID(int idRand) { //Fonction centrale : permet de générer une tabature aléatoire
+    private void genererTabRandom(int idRand) { //Fonction centrale : permet de générer une tabature aléatoire
         // à partir d'une gamme et d'un idRand donnés
         this.idRandom=idRand;
         generateurID();

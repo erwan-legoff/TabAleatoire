@@ -37,7 +37,7 @@ public class MainTab {
         gamme.setRepartition(40);
         gamme.setEstMelodie(true);
         gamme.setNum_gamme(10);
-        gamme.newRandom();
+        gamme.genererTabRandom();
         System.out.println(gamme);
         NotesFlow gammeConvertie = new NotesFlow(gamme);
         System.out.println(gammeConvertie);
