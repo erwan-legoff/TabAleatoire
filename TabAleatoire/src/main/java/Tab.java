@@ -147,7 +147,8 @@ public class Tab {
         return cases_gammes.get(numero_note_random);
 
     }
-
+    // TODO : faire un format comrpressé : liste de tableaux de 2 cases : (numNote,numCorde)
+    // TODO : ensuite faire un constructeur de tablature qui prend cette liste et crée la tablature
 
     private void generateurID()
     {
