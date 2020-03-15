@@ -6,18 +6,24 @@ public class Corde {
     private int accordage=0;//demi ton par rapport au LA
                             //utile que dans des cas d'accordage spécifiques
 
-    private static String nom_corde[]={"","e","B","G","D","A","E"};
-    private int note_corde[]={accordage+4,accordage+11,accordage+7,accordage+2,accordage+9,accordage+4};
+    private static String[] nom_corde ={"","e","B","G","D","A","E"};
+    private int[] note_corde ={accordage+4,accordage+11,accordage+7,accordage+2,accordage+9,accordage+4};
 
-    public Corde(int num_corde, int accordage)
+    public Corde(int num_corde)
     {
         if(num_corde>0 && num_corde<=6)
         {
             this.num_corde=num_corde;
         }
         else{System.out.println("Attention, numero de corde entre 1 et 6 obligatoire");}
+    }
+    public Corde(int num_corde, int accordage)
+    {
+        this(num_corde);
+
         this.accordage=accordage;
     }
+
 
     public Corde(Corde corde, int num_corde) // constructeur copiant une corde
     {

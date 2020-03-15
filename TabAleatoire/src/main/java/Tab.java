@@ -20,7 +20,7 @@ public class Tab {
     private int probaSilence = 50;
     private boolean[] dejaUtilise=new boolean[10000];//stocke les emplacements déjà pris
     private Random randomizer = new Random();
-    private RandomNote randomNote;
+    private RandomCase randomCase;
 
 
     private Corde[] tab_corde;
@@ -39,7 +39,7 @@ public class Tab {
         for (int i = 0; i < nb_corde ; i++) {//initialise la tablature à vide
             tab_corde[i]=new Corde(i+1,accordage);//création de corde vide
         }
-        randomNote= new RandomNote(this);
+        randomCase = new RandomCase(this);
 
         //initialisation de dejaUtilise
         initialiserDejaUtilise();
@@ -121,7 +121,7 @@ public class Tab {
                 else
                     {   //sinon on tire au sort une note à ajouter
                         //appel de la fonction noteRandom
-                        int note_random = randomNote.getNoteRandom(corde);
+                        int note_random = randomCase.getCaseRandom(corde);
                         //Ajout de la note à la fin de la corde
                         corde.addNoteFin(note_random);
                         //En cas de mélodie, on ne pourra plus utiliser ce temps sur aucune des cordes pour mettre une note

@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RandomNote {
-    private int tonalite;
-    private int accordage;
-    private int num_gamme;
-    private int case_min;
-    private int case_max;
-    private int cordeMin;
-    private int cordeMax;
-    private int nbTemps;
-    private int probaSilence;
-    private boolean estMelodie;
+public class RandomCase {
+    private int tonalite=0;
+    private int accordage=0;
+    private int num_gamme=0;
+    private int case_min=0;
+    private int case_max=12;
+    private int cordeMin=1;
+    private int cordeMax=12;
+    private int nbTemps=50;
+    private int probaSilence=50;
+    private boolean estMelodie=true;
     private Random randomizer;
 
-    public RandomNote(int tonalite, int accordage, int num_gamme, int case_min, int case_max, int cordeMin, int cordeMax, int nbTemps, int probaSilence, boolean estMelodie, Random randomizer) {
+    public RandomCase(int tonalite, int accordage, int num_gamme, int case_min, int case_max, int cordeMin, int cordeMax, int nbTemps, int probaSilence, boolean estMelodie, Random randomizer) {
         this.tonalite = tonalite;
         this.accordage = accordage;
         this.num_gamme = num_gamme;
@@ -26,16 +26,21 @@ public class RandomNote {
         this.probaSilence = probaSilence;
         this.randomizer = randomizer;
     }
-    public RandomNote(Tab tablature)
+    public RandomCase(Tab tablature)
     {
         this(tablature.getTonalite(),tablature.getAccordage(),tablature.getNum_gamme(),tablature.getCase_min(),tablature.getCase_max(),tablature.getCordeMin(),tablature.getCordeMax(),tablature.getNb_temps(),tablature.getProbaSilence(),tablature.getEstMelodie(), tablature.getRandomizer());
     }
 
+    public RandomCase(Random randomizer) {
+        this.randomizer=randomizer;
+    }
+
     //permet de générer une note aléatoire dans la gamme et corde choisie
-    public int getNoteRandom(Corde corde)
+    public int getCaseRandom(Corde corde)
     {
         //crée un tableau avec toutes les notes de la gammes dans l'intervalle choisi
         ArrayList<Integer> cases_gammes = Gamme.getGammeEnCase(corde.getNoteCorde(),tonalite,num_gamme,case_min, case_max+1);
+        //System.out.println("tableau case = "+cases_gammes);
         //sélectionne une case au hasard dans ce tableau
         //la note sera donc obligatoirement dans la gamme
         int numero_note_random = RandomR1.randomRepetable(0,cases_gammes.size()-1, randomizer);
@@ -51,20 +56,20 @@ public class RandomNote {
 
     }
 
-    public ArrayList<ArrayList<String>> getListeNote()
+    public ArrayList<ArrayList<String>> getListeCases()
     {
 
 
         ArrayList<ArrayList<String>> listeCorde = new ArrayList<>();
 
 
-        remplirListeNoteRandom(listeCorde);
+        remplirListeCaseRandom(listeCorde);
 
 
         return listeCorde;
     }
 
-    private void remplirListeNoteRandom(ArrayList<ArrayList<String>> listeCorde) {
+    private void remplirListeCaseRandom(ArrayList<ArrayList<String>> listeCorde) {
         initialisationListeListe(listeCorde);
         for (int temps = 0; temps < nbTemps; temps++) {
             System.out.println("temps="+temps);
@@ -72,7 +77,7 @@ public class RandomNote {
                 int numCorde = getNumCordeAleatoire();
                 System.out.println("numCorde="+numCorde);
                 Corde corde = new Corde(numCorde, accordage);
-                int note= getNoteRandom(corde);
+                int note= getCaseRandom(corde);
 
                 listeCorde.get(numCorde-1).add(""+note);
                 remplirSilence(listeCorde, numCorde);
