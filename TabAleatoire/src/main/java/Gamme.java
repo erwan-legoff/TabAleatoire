@@ -18,6 +18,8 @@ public class Gamme {
     static final String[] notesFr =                 {"DO", "DO#","RE", "RE#",  "MI",  "FA","FA#", "SOL","SOL#", "LA", "LA#","SI"};
     static final String[] notesEng =                {"C",   "C#", "D", "D#",   "E",   "F",  "F#",  "G",  "G#", "A",   "A#", "B"};    //liste les notes
 
+    static final String silence = "$";
+
     private static final boolean[] chromatique =    {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
     private static final boolean[] naturelleMaj =   {true, false, true, false, true, true, false, true, false, true, false, true};
     private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, true, false};
@@ -80,7 +82,9 @@ public class Gamme {
         }
 
 
-
+    public static String[] getNotesFr() {
+        return notesFr;
+    }
 
     static ArrayList<Integer> getGammeEnCase(int note_corde, int tonalite, int type_gamme, int case_min, int case_max)
     {   //Permet de renvoyer une gamme choisie dans la tonalité choisie avec l'étendue choisie
