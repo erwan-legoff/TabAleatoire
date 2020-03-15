@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Tab {
+    private final String silence = "$";
     private int accordage = 0;
     private int case_min;
     private int case_max;
@@ -116,7 +117,7 @@ public class Tab {
             for (int temps = 0; temps < nb_temps; temps++) //parcourt tous les temps de cette corde
             {
                 if(proba_silence_corde> RandomR1.randomRepetable(0,100, randomizer)||(dejaUtilise[temps] && estMelodie))
-                    corde.addNoteFin(""); //ajoute un silence aléatoirement ou si déjà utilisée
+                    corde.addNoteFin(silence); //ajoute un silence aléatoirement ou si déjà utilisée
                                                     // et qu'on veut bien une mélodie
                 else
                     {   //sinon on tire au sort une note à ajouter

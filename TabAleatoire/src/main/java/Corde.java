@@ -1,4 +1,5 @@
 public class Corde {
+    private final String silence = "$";
     private boolean estTablature =true;
     private String tab_corde[] = new String[50];
     private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la corde
@@ -75,7 +76,7 @@ public class Corde {
     }
     public int getNoteTabInt(int temps)
     {
-        if (getNoteTemps(temps)=="")
+        if (getNoteTemps(temps).equals(silence))
         {
             return -1;
         }
@@ -112,7 +113,7 @@ public class Corde {
             str = str + "||-";
         for(int i = 0; i< taille_corde; i++)
         {
-            if(tab_corde[i]=="")
+            if(tab_corde[i]==silence)
             {
                 str=str+"--";
             }

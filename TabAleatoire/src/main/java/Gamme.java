@@ -90,7 +90,7 @@ public class Gamme {
     static String caseToNoteEng(int note_corde, String note_case)
     {
 
-        if(note_case.equals(""))
+        if(note_case.equals("$"))
             return"";
         else {int num_case = Integer.parseInt(note_case);
                int num_note = num_case + note_corde;
