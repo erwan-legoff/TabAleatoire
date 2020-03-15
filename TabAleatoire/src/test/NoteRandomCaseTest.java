@@ -8,9 +8,9 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class RandomCaseTest {
+class NoteRandomCaseTest {
     Random randomizer = new Random();
-    RandomCase randomCase = new RandomCase(randomizer);
+    NoteRandomCase noteRandomCase = new NoteRandomCase(randomizer);
     Corde corde = new Corde(1);
     @BeforeEach
     void initialisateur()
@@ -20,7 +20,7 @@ class RandomCaseTest {
     @Test
     void test_getCaseRandom_entre_les_bornes() {
         boolean test=true;
-        int caseRandom= randomCase.getCaseRandom(corde);
+        int caseRandom= noteRandomCase.getCaseRandom(corde);
         for (int i = 0; i <1000 ; i++) {
             System.out.println(caseRandom);
             if (caseRandom<0||caseRandom>12)
@@ -36,7 +36,7 @@ class RandomCaseTest {
         boolean test=false;
 
         for (int i = 0; i <1000 ; i++) {
-            int caseRandom= randomCase.getCaseRandom(corde);
+            int caseRandom= noteRandomCase.getCaseRandom(corde);
             //System.out.println(caseRandom);
             if (caseRandom==0)
             {
@@ -51,7 +51,7 @@ class RandomCaseTest {
         boolean test=false;
 
         for (int i = 0; i <1000 ; i++) {
-            int caseRandom= randomCase.getCaseRandom(corde);
+            int caseRandom= noteRandomCase.getCaseRandom(corde);
             System.out.println(caseRandom);
             if (caseRandom==12)
             {
@@ -68,7 +68,7 @@ class RandomCaseTest {
         int[] somme=new int[13];
         float[] frequence=new float[13];
         for (int i = 0; i <nbTest ; i++) {
-            int caseRandom= randomCase.getCaseRandom(corde);
+            int caseRandom= noteRandomCase.getCaseRandom(corde);
 
             somme[caseRandom]++;
         }
@@ -88,7 +88,7 @@ class RandomCaseTest {
             liste_vide.add(new ArrayList<>());
         }
 
-        randomCase.remplirSilence(liste_vide,corde.getNum());
+        noteRandomCase.remplirSilence(liste_vide,corde.getNum());
         System.out.println(liste_vide);
     }
 }

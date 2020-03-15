@@ -34,12 +34,13 @@ public class MainTab {
          */
         Tab tab = new Tab(6,50);
         tab.setMinMax(0,12);
-        RandomCase randomCase = new RandomCase(tab);
-        //bug
-        ArrayList listeNote = randomCase.getListeCases();
+        NoteRandomCase noteRandomCase = new NoteRandomCase(tab);
+
+        ArrayList listeNote = noteRandomCase.getListeCases();
+        Tab tab1 = new Tab(listeNote);
         //
         //System.out.println(listeNote);
-
+/*
         Tab gamme = new Tab(6,50);
         gamme.setMinMax(8,14);
         gamme.setRepartition(40);
@@ -51,6 +52,8 @@ public class MainTab {
         System.out.println(gammeConvertie);
 
         String[] tableau_tab_id={"1-615-3-50-50-5-10-0-0-1"};
+
+ */
 
 
         //tabCopie.tabFromID_tab("1-65-6-20-50-0-12-8-0");

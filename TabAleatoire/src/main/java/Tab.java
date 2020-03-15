@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Tab {
-    private final String silence = "$";
+    private final String silence = Gamme.getSilence();
     private int accordage = 0;
     private int case_min;
     private int case_max;
@@ -21,7 +21,7 @@ public class Tab {
     private int probaSilence = 50;
     private boolean[] dejaUtilise=new boolean[10000];//stocke les emplacements déjà pris
     private Random randomizer = new Random();
-    private RandomCase randomCase;
+    private NoteRandomCase randomCase;
 
 
     private Corde[] tab_corde;
@@ -40,7 +40,7 @@ public class Tab {
         for (int i = 0; i < nb_corde ; i++) {//initialise la tablature à vide
             tab_corde[i]=new Corde(i+1,accordage);//création de corde vide
         }
-        randomCase = new RandomCase(this);
+        randomCase = new NoteRandomCase(this);
 
         //initialisation de dejaUtilise
         initialiserDejaUtilise();
@@ -49,10 +49,31 @@ public class Tab {
     public  Tab(String[][] tableauTablature)
     {
         this(tableauTablature.length,tableauTablature[0].length);
+        remplirTableauCorde(tableauTablature);
+
+
+    }
+
+
+    public  Tab(ArrayList<ArrayList<String>> listeCorde)
+    {
+        this(listeCorde.size(),listeCorde.get(0).size());
+        String[][] tableauTab = new String[listeCorde.size()][listeCorde.get(0).size()];
+        for (int corde = 0; corde < listeCorde.size(); corde++) {
+            for (int temps = 0; temps < listeCorde.get(0).size(); temps++) {
+                tableauTab[corde][temps]=listeCorde.get(corde).get(temps);
+            }
+        }
+
+        remplirTableauCorde(tableauTab);
+    }
+    private void remplirTableauCorde(String[][] tableauTablature) {
         for (int i_corde = 0; i_corde < tableauTablature.length ; i_corde++) {
             remplirCorde(tableauTablature, i_corde);
         }
     }
+
+
 
     private void remplirCorde(String[][] tableauTablature, int i_corde) {
         for (int temps = 0; temps < tableauTablature[0].length; temps++) {

@@ -20,6 +20,7 @@ public class Gamme {
 
     static final String silence = "$";
 
+
     private static final boolean[] chromatique =    {true, true,  true, true,  true, true, true,  true, true,  true, true,  true};//on stocke les gammes
     private static final boolean[] naturelleMaj =   {true, false, true, false, true, true, false, true, false, true, false, true};
     private static final boolean[] naturelle_m =    {true, false, true, true, false, true, false, true, true, false, true, false};
@@ -107,4 +108,8 @@ public class Gamme {
     public static String getNotesEng(int num_note) {
         return notesEng[num_note];
     }
+    public static String getSilence() {
+        return silence;
+    }
+
 }

@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RandomCase {
+public class NoteRandomCase {
+    private final String silence = Gamme.getSilence();
     private int tonalite=0;
     private int accordage=0;
     private int num_gamme=0;
@@ -14,7 +15,7 @@ public class RandomCase {
     private boolean estMelodie=true;
     private Random randomizer;
 
-    public RandomCase(int tonalite, int accordage, int num_gamme, int case_min, int case_max, int cordeMin, int cordeMax, int nbTemps, int probaSilence, boolean estMelodie, Random randomizer) {
+    public NoteRandomCase(int tonalite, int accordage, int num_gamme, int case_min, int case_max, int cordeMin, int cordeMax, int nbTemps, int probaSilence, boolean estMelodie, Random randomizer) {
         this.tonalite = tonalite;
         this.accordage = accordage;
         this.num_gamme = num_gamme;
@@ -26,12 +27,12 @@ public class RandomCase {
         this.probaSilence = probaSilence;
         this.randomizer = randomizer;
     }
-    public RandomCase(Tab tablature)
+    public NoteRandomCase(Tab tablature)
     {
         this(tablature.getTonalite(),tablature.getAccordage(),tablature.getNum_gamme(),tablature.getCase_min(),tablature.getCase_max(),tablature.getCordeMin(),tablature.getCordeMax(),tablature.getNb_temps(),tablature.getProbaSilence(),tablature.getEstMelodie(), tablature.getRandomizer());
     }
 
-    public RandomCase(Random randomizer) {
+    public NoteRandomCase(Random randomizer) {
         this.randomizer=randomizer;
     }
 
@@ -59,12 +60,8 @@ public class RandomCase {
     public ArrayList<ArrayList<String>> getListeCases()
     {
 
-
         ArrayList<ArrayList<String>> listeCorde = new ArrayList<>();
-
-
         remplirListeCaseRandom(listeCorde);
-
 
         return listeCorde;
     }
@@ -116,7 +113,7 @@ public class RandomCase {
 
             if(numCorde!=i&&estMelodie)
             {
-                listeCorde.get(i).add(" ");
+                listeCorde.get(i).add(silence);
             }
 
         }

@@ -1,5 +1,5 @@
 public class Corde {
-    private final String silence = "$";
+    private final String silence = Gamme.getSilence();
     private boolean estTablature =true;
     private String tab_corde[] = new String[50];
     private int taille_corde =0;//ce sera la taille en nombre de temps de la génération de la corde
