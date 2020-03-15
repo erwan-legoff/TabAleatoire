@@ -32,12 +32,15 @@ public class MainTab {
        // System.out.println("copie:"+ tabCopie);
 
          */
-        Tab tab = new Tab(6,50);
+        //TODO : problème liste pas avec le même nombre de note par corde
+        Tab tab = new Tab(6,10);
         tab.setMinMax(0,12);
         NoteRandomCase noteRandomCase = new NoteRandomCase(tab);
 
         ArrayList listeNote = noteRandomCase.getListeCases();
         Tab tab1 = new Tab(listeNote);
+        System.out.println("tab2=");
+        System.out.println("tab1="+tab1);
         //
         //System.out.println(listeNote);
 /*

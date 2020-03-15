@@ -59,8 +59,8 @@ public class Tab {
     {
         this(listeCorde.size(),listeCorde.get(0).size());
         String[][] tableauTab = new String[listeCorde.size()][listeCorde.get(0).size()];
-        for (int corde = 0; corde < listeCorde.size(); corde++) {
-            for (int temps = 0; temps < listeCorde.get(0).size(); temps++) {
+        for (int corde = 0; corde < listeCorde.size()-1; corde++) {
+            for (int temps = 0; temps < listeCorde.get(0).size()-1; temps++) {
                 tableauTab[corde][temps]=listeCorde.get(corde).get(temps);
             }
         }
