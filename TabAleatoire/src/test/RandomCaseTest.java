@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -77,5 +78,17 @@ class RandomCaseTest {
         }
         System.out.println("frequence="+Arrays.toString(frequence));
         assertEquals(frequence[1],100*(1/13.0),0.004);
+    }
+
+    @Test
+    public void test_remplir_vide()
+    {
+        ArrayList<ArrayList<String>> liste_vide = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            liste_vide.add(new ArrayList<>());
+        }
+
+        randomCase.remplirSilence(liste_vide,corde.getNum());
+        System.out.println(liste_vide);
     }
 }

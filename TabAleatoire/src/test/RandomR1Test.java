@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,13 +34,8 @@ class RandomR1Test {
                 System.out.println(random);
                 if(random==4)
                     test=true;
-
             }
-
-
             assertTrue(test);
-
-
     }
 
 }

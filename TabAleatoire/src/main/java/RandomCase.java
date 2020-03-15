@@ -8,7 +8,7 @@ public class RandomCase {
     private int case_min=0;
     private int case_max=12;
     private int cordeMin=1;
-    private int cordeMax=12;
+    private int cordeMax=6;
     private int nbTemps=50;
     private int probaSilence=50;
     private boolean estMelodie=true;
@@ -96,8 +96,10 @@ public class RandomCase {
         return RandomR1.randomRepetable(cordeMin, cordeMax, randomizer);
     }
 
-    private void remplirSilence(ArrayList<ArrayList<String>> listeCorde, int numCorde) {
+    public void remplirSilence(ArrayList<ArrayList<String>> listeCorde, int numCorde) {
         for (int i = 0; i < cordeMax; i++) {
+            System.out.println("cordeMax="+cordeMax);
+            System.out.println("i="+i+" corde="+numCorde+" tailleListe="+listeCorde.size());
             if(numCorde!=i&&estMelodie)
             {
                 listeCorde.get(i).add(" ");
