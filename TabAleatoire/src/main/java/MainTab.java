@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MainTab {
     public static void main(String[] args) {
         //ajouts dans le futur proche : ajout d'ID permettant de retrouver la tablature anciennement générée
@@ -30,8 +32,12 @@ public class MainTab {
        // System.out.println("copie:"+ tabCopie);
 
          */
-
-
+        Tab tab = new Tab(6,50);
+        tab.setMinMax(0,12);
+        RandomNote randomNote= new RandomNote(tab);
+        ArrayList listeNote = randomNote.getListeNote();
+        System.out.println(listeNote);
+        /*
         Tab gamme = new Tab(6,50);
         gamme.setMinMax(8,14);
         gamme.setRepartition(40);
@@ -50,6 +56,8 @@ public class MainTab {
         //System.out.println("min = "+case_min + " max = "+case_max+"\n"+ tabCopie);//affichage de la tablature
 
 
+
+         */
         /*
         DESCRIPTION RESULTAT
         chaque paire de "-" désigne un temps (pour l'instant, c'est simplifié)

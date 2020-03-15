@@ -51,7 +51,7 @@ public class RandomNote {
 
     }
 
-    private ArrayList<ArrayList<String>> getListeNote()
+    public ArrayList<ArrayList<String>> getListeNote()
     {
 
 
@@ -65,15 +65,30 @@ public class RandomNote {
     }
 
     private void remplirListeNoteRandom(ArrayList<ArrayList<String>> listeCorde) {
+        initialisationListeListe(listeCorde);
         for (int temps = 0; temps < nbTemps; temps++) {
+            System.out.println("temps="+temps);
             if(!estSilencieux()) {
-                int numCorde = RandomR1.randomRepetable(cordeMin, cordeMax, randomizer);
+                int numCorde = getNumCordeAleatoire();
+                System.out.println("numCorde="+numCorde);
                 Corde corde = new Corde(numCorde, accordage);
                 int note= getNoteRandom(corde);
-                listeCorde.get(numCorde).add(""+note);
+
+                listeCorde.get(numCorde-1).add(""+note);
                 remplirSilence(listeCorde, numCorde);
             }
         }
+    }
+
+    private void initialisationListeListe(ArrayList<ArrayList<String>> listeCorde) {
+        for (int corde = 0; corde < cordeMax-cordeMin; corde++) {
+            ArrayList<String> listeNoteCorde = new ArrayList<>();
+            listeCorde.add(listeNoteCorde);
+        }
+    }
+
+    private int getNumCordeAleatoire() {
+        return RandomR1.randomRepetable(cordeMin, cordeMax, randomizer);
     }
 
     private void remplirSilence(ArrayList<ArrayList<String>> listeCorde, int numCorde) {

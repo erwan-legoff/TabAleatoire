@@ -28,8 +28,8 @@ public class Tab {
     public Tab(int nbCorde, int nb_temps) //création d'une tablature à remplir, en fonction de la taille demandée
     {
         this.nb_corde=nbCorde;
-        this.cordeMin=0;
-        this.cordeMax=cordeMin+nbCorde;
+        this.cordeMin=1;
+        this.cordeMax=cordeMin+nbCorde-1;
         this.nb_temps=nb_temps;
         case_min=0;
         case_max=12;
@@ -104,7 +104,7 @@ public class Tab {
 
         generateurID();
 
-        this.randomizer.setSeed(idRandom);
+        initialisationRandomizerID();
 
         for (int i_corde = 0; i_corde < nb_corde; i_corde++)//parcours les cordes
         {
@@ -129,6 +129,10 @@ public class Tab {
                     }
             }
         }
+    }
+
+    private void initialisationRandomizerID() {
+        this.randomizer.setSeed(idRandom);
     }
 
 
