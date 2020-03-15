@@ -15,7 +15,7 @@ class RandomCaseTest {
     @BeforeEach
     void initialisateur()
     {
-        randomizer.setSeed(50);
+
     }
     @Test
     void test_getCaseRandom_entre_les_bornes() {

@@ -10,7 +10,10 @@ public  class  RandomR1 {
     //permet de retrouver la tablature en rentrant de nouveau l'ID_RAND
     public static int randomRepetable(int min, int max, Random randomizer)
     {
-        return randomizer.nextInt(max+min+1)+min;
+        System.out.println("dans random repetable : "+ " min="+min+ " max="+ max);
+        int random = randomizer.nextInt(max-min)+min;
+        System.out.println("numRandom="+random);
+        return random;
     }
 
 }

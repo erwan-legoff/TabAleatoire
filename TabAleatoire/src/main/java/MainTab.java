@@ -35,7 +35,9 @@ public class MainTab {
         Tab tab = new Tab(6,50);
         tab.setMinMax(0,12);
         RandomCase randomCase = new RandomCase(tab);
+        //bug
         ArrayList listeNote = randomCase.getListeCases();
+        //
         System.out.println(listeNote);
         /*
         Tab gamme = new Tab(6,50);

@@ -70,36 +70,50 @@ public class RandomCase {
     }
 
     private void remplirListeCaseRandom(ArrayList<ArrayList<String>> listeCorde) {
+
         initialisationListeListe(listeCorde);
+
         for (int temps = 0; temps < nbTemps; temps++) {
+
             System.out.println("temps="+temps);
+            System.out.println("cordeMax="+cordeMax);
+
             if(!estSilencieux()) {
+
                 int numCorde = getNumCordeAleatoire();
                 System.out.println("numCorde="+numCorde);
                 Corde corde = new Corde(numCorde, accordage);
                 int note= getCaseRandom(corde);
 
                 listeCorde.get(numCorde-1).add(""+note);
+                System.out.println(listeCorde);
                 remplirSilence(listeCorde, numCorde);
+
             }
+            else {System.out.println("est silencieux");
+                remplirSilence(listeCorde, -1);
+                };
+
         }
     }
 
     private void initialisationListeListe(ArrayList<ArrayList<String>> listeCorde) {
-        for (int corde = 0; corde < cordeMax-cordeMin; corde++) {
+        for (int corde = 0; corde < cordeMax; corde++) {
             ArrayList<String> listeNoteCorde = new ArrayList<>();
             listeCorde.add(listeNoteCorde);
         }
     }
 
     private int getNumCordeAleatoire() {
-        return RandomR1.randomRepetable(cordeMin, cordeMax, randomizer);
+        System.out.println("dansGetNumCorde : cordeMax = " + cordeMax + "cordeMin="+cordeMin);
+        int numCordeAlea = RandomR1.randomRepetable(cordeMin, cordeMax, randomizer);
+        System.out.println("numCordeAlea="+numCordeAlea);
+        return numCordeAlea;
     }
 
     public void remplirSilence(ArrayList<ArrayList<String>> listeCorde, int numCorde) {
         for (int i = 0; i < cordeMax; i++) {
-            System.out.println("cordeMax="+cordeMax);
-            System.out.println("i="+i+" corde="+numCorde+" tailleListe="+listeCorde.size());
+
             if(numCorde!=i&&estMelodie)
             {
                 listeCorde.get(i).add(" ");
